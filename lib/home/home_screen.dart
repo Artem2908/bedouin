@@ -1,3 +1,4 @@
+import 'package:bedouin/home/widgets/liked_people_iconbutton.dart';
 import 'package:bedouin/liked_people/like_screen.dart';
 import 'package:bedouin/models/user_choise.dart';
 import 'package:bedouin/network/models/result.dart';
@@ -42,22 +43,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
               textAlign: TextAlign.center,
             )),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: IconButton(
-              icon: Icon(Icons.people),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LikedPeople();
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
+          LikedPeopleIcon(),
         ],
       ),
       body: FutureBuilder(
@@ -121,15 +107,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
                           'city': result.location.city,
                         });
                       });
-                      setState(() {
-                        loading = true;
-                        result = personProvider.getRandomPerson(widget.userChoose.gender, widget.userChoose.country)
-                          ..then((_) {
-                            setState(() {
-                              loading = false;
-                            });
-                          });
-                      });
+                      update();
                     },
                     child: Container(
                       height: 60.0,
@@ -140,17 +118,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      setState(() {
-                        loading = true;
-                        result = personProvider.getRandomPerson(widget.userChoose.gender, widget.userChoose.country)
-                          ..then((_) {
-                            setState(() {
-                              loading = false;
-                            });
-                          });
-                      });
-                    },
+                    onTap: () => update(),
                     child: Container(
                       height: 60.0,
                       width: MediaQuery.of(context).size.width / 3,
@@ -166,5 +134,17 @@ class _PeopleScreenState extends State<PeopleScreen> {
         },
       ),
     );
+  }
+
+  void update() {
+    setState(() {
+      loading = true;
+      result = personProvider.getRandomPerson(widget.userChoose.gender, widget.userChoose.country)
+        ..then((_) {
+          setState(() {
+            loading = false;
+          });
+        });
+    });
   }
 }

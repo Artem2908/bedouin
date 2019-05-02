@@ -23,7 +23,6 @@ class LikedPeople extends StatelessWidget {
                 key: Key(document.documentID),
                 background: Container(
                   color: Colors.red,
-                  child: Text('Delete',textAlign: TextAlign.left,),
                 ),
                 direction: DismissDirection.startToEnd,
                 onDismissed: (_) async {

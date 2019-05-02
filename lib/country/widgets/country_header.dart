@@ -23,8 +23,7 @@ class _CountryHeaderState extends State<CountryHeader> {
         ),
         Text(
           'find your camel',
-          style: TextStyle(fontSize: 20.0,
-              color: Colors.black45),
+          style: TextStyle(fontSize: 20.0, color: Colors.black45),
         ),
       ],
     );

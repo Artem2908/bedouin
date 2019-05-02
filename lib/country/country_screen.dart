@@ -42,8 +42,12 @@ class _SelectCountryState extends State<SelectCountry> {
                 });
               },
             ),
-            GenderButton(textbutton: 'male',),
-            GenderButton(textbutton: 'female',),
+            GenderButton(
+              textbutton: 'male',
+            ),
+            GenderButton(
+              textbutton: 'female',
+            ),
           ],
         ),
       ),
